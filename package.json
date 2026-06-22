@@ -1,0 +1,48 @@
+{
+  "name": "hashlens",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "HashLens — Openi Analytics internal analyst workbench for breach-data, credential-exposure, and hash workflows.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "lint": "eslint . --max-warnings=0",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "js-md5": "^0.8.3",
+    "js-sha1": "^0.7.0",
+    "js-sha256": "^0.11.0",
+    "js-sha512": "^0.9.0",
+    "lucide-react": "^0.452.0",
+    "papaparse": "^5.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/papaparse": "^5.3.14",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vitest": "^2.1.1"
+  }
+}

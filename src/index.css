@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg text-slate-200 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04';
+  }
+  /* Respect mobile safe areas (notches) for the bottom nav. */
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
+  }
+}
+
+@layer utilities {
+  .mono {
+    font-family: theme('fontFamily.mono');
+  }
+}
