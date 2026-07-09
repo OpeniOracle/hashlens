@@ -1,32 +1,34 @@
 /** @type {import('tailwindcss').Config} */
+// Openi design language via the shared kernel preset. HashLens keeps its
+// semantic color names (bg/border/brand/muted) so component classes are
+// stable, but every value now comes from @openi/kernel/tokens — brand is the
+// suite's amber signal (was app-local sky blue).
+import openi from '@openi/kernel/tailwind-preset';
+import { palette } from '@openi/kernel/tokens';
+
 export default {
   darkMode: 'class',
+  presets: [openi],
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        // Dark, professional "Openi" palette.
         bg: {
-          DEFAULT: '#0b0f17',
-          raised: '#111722',
-          inset: '#0a0e15',
+          DEFAULT: palette.navy[950],
+          raised: palette.navy[900],
+          // One step below the navy ramp for inset wells.
+          inset: '#070c16',
         },
         border: {
-          DEFAULT: '#1f2937',
-          subtle: '#161e2b',
+          DEFAULT: palette.navy[700],
+          subtle: palette.navy[800],
         },
         brand: {
-          DEFAULT: '#38bdf8',
-          fg: '#0b0f17',
-          muted: '#0e7490',
+          DEFAULT: palette.signal.DEFAULT,
+          fg: palette.navy[950],
+          muted: palette.signal.muted,
         },
-        danger: '#f87171',
-        warn: '#fbbf24',
-        ok: '#34d399',
-        muted: '#7c8aa0',
-      },
-      fontFamily: {
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
+        muted: palette.bone[500],
       },
     },
   },

@@ -9,6 +9,10 @@
 // a future server-side packet exporter (see integrations/briefbuilder).
 // ---------------------------------------------------------------------------
 
+// Escaping comes from the shared kernel (ADR-002): identical behavior
+// suite-wide, plus spreadsheet formula-injection hardening ('=SUM(...)' cells
+// are prefixed) and single-quote HTML escaping the old local helpers lacked.
+import { csvRow, escapeHtml } from '@openi/kernel/format';
 import { HASH_LABELS } from './hashing';
 import type { CaseBundle, MatchResult, Selector } from '@/data/types';
 
@@ -18,16 +22,6 @@ export interface ExportOptions {
 }
 
 const SAFE_DEFAULTS: ExportOptions = { includeSensitive: false };
-
-function csvEscape(value: string | number | null | undefined): string {
-  const s = value === null || value === undefined ? '' : String(value);
-  if (/[",\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
-  return s;
-}
-
-function csvRow(cells: (string | number | null | undefined)[]): string {
-  return cells.map(csvEscape).join(',');
-}
 
 /**
  * Render match results as CSV. By default emits only masked, non-sensitive
@@ -69,14 +63,6 @@ export function matchesToCsv(
     lines.push(csvRow(cells));
   }
   return lines.join('\n');
-}
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 function uniqueAlgorithms(matches: MatchResult[]): string[] {

@@ -39,10 +39,10 @@ export function Modal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-border-subtle p-4">
-          <h2 className="text-sm font-semibold text-slate-100">{title}</h2>
+          <h2 className="text-sm font-semibold text-bone-100">{title}</h2>
           <button
             onClick={onClose}
-            className="text-muted hover:text-slate-200"
+            className="text-muted hover:text-bone-200"
             aria-label="Close"
           >
             <X size={18} />

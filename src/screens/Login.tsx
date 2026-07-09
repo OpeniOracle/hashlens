@@ -30,7 +30,7 @@ export function Login() {
             <ShieldCheck size={26} />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-slate-100">HashLens</h1>
+            <h1 className="text-xl font-semibold text-bone-100">HashLens</h1>
             <p className="text-sm text-muted">Openi Analytics · analyst workbench</p>
           </div>
         </div>
@@ -52,7 +52,7 @@ export function Login() {
                   {busy ? 'Please wait…' : mode === 'in' ? 'Sign in' : 'Create account'}
                 </Button>
                 <button
-                  className="w-full text-center text-xs text-muted hover:text-slate-200"
+                  className="w-full text-center text-xs text-muted hover:text-bone-200"
                   onClick={() => setMode((m) => (m === 'in' ? 'up' : 'in'))}
                 >
                   {mode === 'in' ? 'Need an account? Sign up' : 'Have an account? Sign in'}
@@ -60,7 +60,7 @@ export function Login() {
               </>
             ) : (
               <div className="space-y-3 text-center">
-                <p className="text-sm text-slate-300">
+                <p className="text-sm text-bone-300">
                   Supabase is not configured, so HashLens is running in <strong>local demo mode</strong>.
                   Data is stored only in this browser.
                 </p>

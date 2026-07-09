@@ -120,7 +120,7 @@ export function MatchWorkspace() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-lg font-semibold text-slate-100">Match Workspace</h1>
+        <h1 className="text-lg font-semibold text-bone-100">Match Workspace</h1>
         <p className="text-sm text-muted">
           Match candidate plaintext/email values against discovered hashes. Candidates are
           masked by default in saved results.
@@ -212,10 +212,10 @@ export function MatchWorkspace() {
                     {hits.map((h, i) => (
                       <tr key={i} className="border-t border-border-subtle">
                         <td className="py-2 pr-3"><Badge tone="algo">{HASH_LABELS[h.algorithm]}</Badge></td>
-                        <td className="py-2 pr-3 mono text-slate-300">{maskValue(h.candidateValue, h.isEmail)}</td>
-                        <td className="py-2 pr-3 text-slate-400">{h.normalizationLabel}</td>
-                        <td className="py-2 pr-3 text-slate-400">{h.sourceLabel ?? '—'}</td>
-                        <td className="py-2 pr-3 mono text-slate-500" title={h.hash}>{truncateHash(h.hash)}</td>
+                        <td className="py-2 pr-3 mono text-bone-300">{maskValue(h.candidateValue, h.isEmail)}</td>
+                        <td className="py-2 pr-3 text-bone-400">{h.normalizationLabel}</td>
+                        <td className="py-2 pr-3 text-bone-400">{h.sourceLabel ?? '—'}</td>
+                        <td className="py-2 pr-3 mono text-bone-500" title={h.hash}>{truncateHash(h.hash)}</td>
                         <td className="py-2 pr-3">{(h.confidence * 100).toFixed(0)}%</td>
                       </tr>
                     ))}

@@ -84,7 +84,7 @@ export function RevealValue({
 
   return (
     <span className="inline-flex items-center gap-1.5">
-      <span className="font-mono text-slate-400">{masked}</span>
+      <span className="font-mono text-bone-400">{masked}</span>
       {hasPlaintext ? (
         <Button
           variant="ghost"

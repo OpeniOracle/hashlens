@@ -26,7 +26,7 @@ export function Layout() {
               <ShieldCheck size={18} />
             </div>
             <div className="leading-tight">
-              <div className="text-sm font-semibold text-slate-100">HashLens</div>
+              <div className="text-sm font-semibold text-bone-100">HashLens</div>
               <div className="text-[10px] uppercase tracking-wide text-muted">Openi Analytics</div>
             </div>
           </div>
@@ -39,7 +39,7 @@ export function Layout() {
                 className={({ isActive }) =>
                   cn(
                     'inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm',
-                    isActive ? 'bg-bg-raised text-slate-100' : 'text-slate-400 hover:text-slate-200',
+                    isActive ? 'bg-bg-raised text-bone-100' : 'text-bone-400 hover:text-bone-200',
                   )
                 }
               >
@@ -59,7 +59,7 @@ export function Layout() {
                 await signOut();
                 navigate('/');
               }}
-              className="text-muted hover:text-slate-200"
+              className="text-muted hover:text-bone-200"
               title="Sign out"
               aria-label="Sign out"
             >
@@ -83,7 +83,7 @@ export function Layout() {
               className={({ isActive }) =>
                 cn(
                   'flex flex-1 flex-col items-center gap-0.5 py-2 text-[11px]',
-                  isActive ? 'text-brand' : 'text-slate-400',
+                  isActive ? 'text-brand' : 'text-bone-400',
                 )
               }
             >
