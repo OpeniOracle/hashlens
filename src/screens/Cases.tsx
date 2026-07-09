@@ -57,7 +57,7 @@ export function Cases() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-slate-100">Cases</h1>
+          <h1 className="text-lg font-semibold text-bone-100">Cases</h1>
           <p className="text-sm text-muted">Case-based workspaces for breach &amp; credential investigations.</p>
         </div>
         <Button variant="primary" size="sm" onClick={() => setOpen(true)}>
@@ -81,14 +81,14 @@ export function Cases() {
               <CardContent className="space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <Link to={`/cases/${c.id}`} className="block">
-                    <div className="font-medium text-slate-100">{c.name}</div>
+                    <div className="font-medium text-bone-100">{c.name}</div>
                     <div className="text-xs text-muted">{c.client_name ?? 'No client'}</div>
                   </Link>
                   <button onClick={() => remove(c.id)} className="text-muted hover:text-danger" aria-label="Delete case">
                     <Trash2 size={15} />
                   </button>
                 </div>
-                {c.description && <p className="line-clamp-2 text-xs text-slate-400">{c.description}</p>}
+                {c.description && <p className="line-clamp-2 text-xs text-bone-400">{c.description}</p>}
                 <div className="flex items-center gap-2">
                   <Badge tone={c.hash_only ? 'ok' : 'warn'}>{c.hash_only ? 'hash-only' : 'plaintext allowed'}</Badge>
                   <span className="text-[11px] text-muted">{new Date(c.created_at).toLocaleDateString()}</span>
@@ -113,7 +113,7 @@ export function Cases() {
             <Label>Description</Label>
             <Input value={description} onChange={(e) => setDescription(e.target.value)} />
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-bone-300">
             <input type="checkbox" checked={hashOnly} onChange={(e) => setHashOnly(e.target.checked)} />
             Hash-only mode (recommended — never stores plaintext)
           </label>

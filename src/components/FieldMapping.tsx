@@ -39,7 +39,7 @@ export function FieldMapping({
             <tr>
               {parsed.headers.map((h) => (
                 <th key={h} className="border-b border-border px-2 py-2 align-top">
-                  <div className="mb-1 mono text-slate-300">{h}</div>
+                  <div className="mb-1 mono text-bone-300">{h}</div>
                   <Select value={mapping[h] ?? 'ignore'} onChange={(e) => update(h, e.target.value as MappableField)}>
                     {MAPPABLE_FIELDS.map((f) => (
                       <option key={f.field} value={f.field}>
@@ -55,7 +55,7 @@ export function FieldMapping({
             {preview.map((row, i) => (
               <tr key={i} className="odd:bg-bg-raised/40">
                 {parsed.headers.map((h) => (
-                  <td key={h} className="border-b border-border-subtle px-2 py-1.5 mono text-slate-400">
+                  <td key={h} className="border-b border-border-subtle px-2 py-1.5 mono text-bone-400">
                     <span className="block max-w-[180px] truncate" title={row[h]}>
                       {row[h]}
                     </span>

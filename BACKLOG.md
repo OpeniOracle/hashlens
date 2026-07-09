@@ -25,12 +25,12 @@ stops at a clean, safe, demoable core; these are the next increments.
 
 ## P2 — Platform integrations (stubs already in `src/integrations/`)
 
-- **BriefBuilder:** push a client-safe case packet (`exportToBriefBuilder`).
+- **BriefBuilder:** ~~push a client-safe case packet~~ DONE 2026-07 as a file-based `openi.casepacket` v1 export (`lib/casePacket.ts`, Case → "Case packet"); BriefBuilder imports it. Direct push stays open pending a service contract.
 - **LinkView:** emit a selector/hash/source graph (`exportGraphToLinkView`) — implement the pure `bundle → GraphExport` transform first and unit test it.
-- **Openi Kernel:** canonical ids + ontology for selectors (`enrichSelector`).
+- **Openi Kernel:** canonical ids + ontology for selectors (`enrichSelector`). Partially adopted 2026-07: kernel `nowIso`, `csvRow`/`escapeHtml`, design tokens, and packet primitives are consumed; `uuid()` stays local until the kernel offers a strict-RFC-4122 id helper (PG `uuid` columns).
 - **Openi Intelligence Interface:** launch tile + deep links (`launchTileDescriptor`).
 - **Entitlements:** real workspace/tool entitlement checks (`hasToolEntitlement`).
-- **Case packet export:** portable, signed packet for cross-product transfer (`buildCasePacket`).
+- **Case packet export:** ~~portable packet for cross-product transfer~~ DONE 2026-07 (unsigned; `lib/casePacket.ts`). Signing stays open.
 
 ## P3 — Quality & ops
 

@@ -56,7 +56,7 @@ export function SaveToCaseModal({
                   }}
                   className="flex w-full items-center justify-between rounded-md border border-border bg-bg-inset px-3 py-2 text-left text-sm hover:border-brand/50"
                 >
-                  <span className="text-slate-200">{c.name}</span>
+                  <span className="text-bone-200">{c.name}</span>
                   <span className="text-xs text-muted">{c.client_name ?? '—'}</span>
                 </button>
               ))}

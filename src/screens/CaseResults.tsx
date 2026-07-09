@@ -25,6 +25,7 @@ import { RevealValue } from '@/components/RevealValue';
 import { useAuth, useStore } from '@/auth/AuthProvider';
 import { HASH_ALGORITHMS, HASH_LABELS, type HashAlgorithm } from '@/lib/hashing';
 import { matchesToCsv, buildClientSummaryHtml, downloadText } from '@/lib/export';
+import { hashlensPacketDownload } from '@/lib/casePacket';
 import type { CaseBundle, Selector } from '@/data/types';
 
 type RevealFilter = 'all' | 'revealed' | 'not_revealed';
@@ -143,6 +144,16 @@ export function CaseResults() {
     await load();
   }
 
+  // Portable suite interchange (openi.casepacket v1) — always client-safe
+  // (masked values only), importable in BriefBuilder.
+  async function exportPacket() {
+    if (!bundle) return;
+    const { filename, json } = hashlensPacketDownload(bundle, auth?.email ?? undefined);
+    await store.recordExport(caseId, 'case_packet', false);
+    downloadText(filename, json, 'application/json');
+    await load();
+  }
+
   if (loading) return <p className="text-sm text-muted">Loading case…</p>;
   if (!bundle) return <p className="text-sm text-danger">Case not found.</p>;
 
@@ -151,17 +162,17 @@ export function CaseResults() {
 
   return (
     <div className="space-y-4">
-      <Link to="/cases" className="inline-flex items-center gap-1 text-xs text-muted hover:text-slate-200">
+      <Link to="/cases" className="inline-flex items-center gap-1 text-xs text-muted hover:text-bone-200">
         <ArrowLeft size={14} /> All cases
       </Link>
 
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-lg font-semibold text-slate-100">{c.name}</h1>
+          <h1 className="text-lg font-semibold text-bone-100">{c.name}</h1>
           <p className="text-sm text-muted">
             {c.client_name ?? 'No client'} · created {new Date(c.created_at).toLocaleString()}
           </p>
-          {c.description && <p className="mt-1 max-w-2xl text-sm text-slate-400">{c.description}</p>}
+          {c.description && <p className="mt-1 max-w-2xl text-sm text-bone-400">{c.description}</p>}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Badge tone={c.hash_only ? 'ok' : 'warn'}>{c.hash_only ? 'hash-only' : 'plaintext allowed'}</Badge>
@@ -184,6 +195,14 @@ export function CaseResults() {
           </Button>
           <Button variant="secondary" size="sm" onClick={exportSummary}>
             <FileText size={14} /> Client summary
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={exportPacket}
+            title="Portable Openi case packet (masked, client-safe) — importable in BriefBuilder"
+          >
+            <Download size={14} /> Case packet
           </Button>
           {canExportSensitive && (
             <Button variant="danger" size="sm" onClick={() => exportCsv(true)} title="Admin only — includes plaintext">
@@ -278,10 +297,10 @@ export function CaseResults() {
                             hasPlaintext={hasStoredPlaintext(sel)}
                           />
                         </td>
-                        <td className="py-2 pr-3 text-slate-400">{m.normalization_label ?? '—'}</td>
-                        <td className="py-2 pr-3 text-slate-400">{m.source_label ?? '—'}</td>
+                        <td className="py-2 pr-3 text-bone-400">{m.normalization_label ?? '—'}</td>
+                        <td className="py-2 pr-3 text-bone-400">{m.source_label ?? '—'}</td>
                         <td className="py-2 pr-3">{(m.confidence * 100).toFixed(0)}%</td>
-                        <td className="py-2 pr-3 text-slate-500">{new Date(m.created_at).toLocaleDateString()}</td>
+                        <td className="py-2 pr-3 text-bone-500">{new Date(m.created_at).toLocaleDateString()}</td>
                       </tr>
                     );
                   })}
@@ -310,7 +329,7 @@ export function CaseResults() {
               <ul className="space-y-2">
                 {bundle.notes.map((n) => (
                   <li key={n.id} className="rounded-md border border-border-subtle bg-bg-inset p-2 text-xs">
-                    <p className="text-slate-300">{n.body}</p>
+                    <p className="text-bone-300">{n.body}</p>
                     <p className="mt-1 text-[10px] text-muted">{new Date(n.created_at).toLocaleString()}</p>
                   </li>
                 ))}
@@ -336,10 +355,10 @@ export function CaseResults() {
                       <Badge tone={r.action === 'exported' ? 'danger' : r.action === 'copied' ? 'warn' : 'brand'}>
                         {r.action}
                       </Badge>
-                      <span className="text-slate-400">{r.object_type}</span>
+                      <span className="text-bone-400">{r.object_type}</span>
                       <span className="ml-auto text-[10px] text-muted">{new Date(r.created_at).toLocaleString()}</span>
                     </div>
-                    <p className="mt-1 text-slate-300">“{r.reason}”</p>
+                    <p className="mt-1 text-bone-300">“{r.reason}”</p>
                   </li>
                 ))}
               </ul>
@@ -354,7 +373,7 @@ export function CaseResults() {
 function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-lg border border-border bg-bg-raised p-3">
-      <div className="text-xl font-semibold text-slate-100">{value}</div>
+      <div className="text-xl font-semibold text-bone-100">{value}</div>
       <div className="text-[11px] uppercase tracking-wide text-muted">{label}</div>
     </div>
   );

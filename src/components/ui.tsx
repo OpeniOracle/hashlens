@@ -16,10 +16,10 @@ type ButtonSize = 'sm' | 'md' | 'icon';
 
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
   primary: 'bg-brand text-brand-fg hover:bg-sky-300 font-medium',
-  secondary: 'bg-bg-raised border border-border text-slate-200 hover:bg-border-subtle',
-  ghost: 'text-slate-300 hover:bg-bg-raised',
+  secondary: 'bg-bg-raised border border-border text-bone-200 hover:bg-border-subtle',
+  ghost: 'text-bone-300 hover:bg-bg-raised',
   danger: 'bg-danger/90 text-white hover:bg-danger',
-  outline: 'border border-border text-slate-200 hover:bg-bg-raised',
+  outline: 'border border-border text-bone-200 hover:bg-bg-raised',
 };
 
 const BUTTON_SIZES: Record<ButtonSize, string> = {
@@ -59,7 +59,7 @@ export function CardHeader({ className, ...props }: HTMLAttributes<HTMLDivElemen
 }
 
 export function CardTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={cn('text-base font-semibold text-slate-100', className)} {...props} />;
+  return <h3 className={cn('text-base font-semibold text-bone-100', className)} {...props} />;
 }
 
 export function CardContent({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
@@ -71,7 +71,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
     <input
       ref={ref}
       className={cn(
-        'w-full h-10 rounded-md border border-border bg-bg-inset px-3 text-sm text-slate-100 placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
+        'w-full h-10 rounded-md border border-border bg-bg-inset px-3 text-sm text-bone-100 placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
         className,
       )}
       {...props}
@@ -85,7 +85,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<H
     <textarea
       ref={ref}
       className={cn(
-        'w-full min-h-[120px] rounded-md border border-border bg-bg-inset px-3 py-2 text-sm font-mono text-slate-100 placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
+        'w-full min-h-[120px] rounded-md border border-border bg-bg-inset px-3 py-2 text-sm font-mono text-bone-100 placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
         className,
       )}
       {...props}
@@ -99,7 +99,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSel
     <select
       ref={ref}
       className={cn(
-        'h-9 rounded-md border border-border bg-bg-inset px-2 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
+        'h-9 rounded-md border border-border bg-bg-inset px-2 text-sm text-bone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
         className,
       )}
       {...props}
@@ -109,12 +109,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSel
 Select.displayName = 'Select';
 
 export function Label({ className, ...props }: LabelHTMLAttributes<HTMLLabelElement>) {
-  return <label className={cn('text-xs font-medium text-slate-400', className)} {...props} />;
+  return <label className={cn('text-xs font-medium text-bone-400', className)} {...props} />;
 }
 
 type BadgeTone = 'neutral' | 'brand' | 'ok' | 'warn' | 'danger' | 'algo';
 const BADGE_TONES: Record<BadgeTone, string> = {
-  neutral: 'bg-border-subtle text-slate-300 border-border',
+  neutral: 'bg-border-subtle text-bone-300 border-border',
   brand: 'bg-brand/15 text-brand border-brand/30',
   ok: 'bg-ok/15 text-ok border-ok/30',
   warn: 'bg-warn/15 text-warn border-warn/30',

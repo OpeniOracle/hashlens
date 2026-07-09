@@ -148,7 +148,7 @@ export interface AnalystNote {
 export interface ExportRecord {
   id: string;
   case_id: string;
-  kind: 'csv' | 'client_summary';
+  kind: 'csv' | 'client_summary' | 'case_packet';
   /** True only for an admin-authorized export that includes plaintext. */
   includes_sensitive: boolean;
   created_by: string;

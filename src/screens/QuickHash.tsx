@@ -58,7 +58,7 @@ export function QuickHash() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-lg font-semibold text-slate-100">Quick Hash</h1>
+        <h1 className="text-lg font-semibold text-bone-100">Quick Hash</h1>
         <p className="text-sm text-muted">
           Paste plaintext, emails, usernames, or hashes — one per line. HashLens detects each type
           and generates digests locally.
@@ -113,7 +113,7 @@ export function QuickHash() {
                 <div key={`${v.label}-${v.value}`} className="rounded-lg border border-border-subtle bg-bg-inset p-3">
                   <div className="mb-2 flex flex-wrap items-center gap-2">
                     <Badge tone="brand">{v.label}</Badge>
-                    <span className="mono text-xs text-slate-300 break-all">{v.value}</span>
+                    <span className="mono text-xs text-bone-300 break-all">{v.value}</span>
                     <CopyButton value={v.value} label="Copy value" />
                   </div>
                   <div className="grid gap-1.5">
@@ -122,7 +122,7 @@ export function QuickHash() {
                         <Badge tone="algo" className="w-16 justify-center">
                           {HASH_LABELS[algo]}
                         </Badge>
-                        <span className="mono text-slate-400" title={v.hashes[algo]}>
+                        <span className="mono text-bone-400" title={v.hashes[algo]}>
                           {truncateHash(v.hashes[algo], 16, 8)}
                         </span>
                         <CopyButton value={v.hashes[algo]} label={`Copy ${HASH_LABELS[algo]}`} />
