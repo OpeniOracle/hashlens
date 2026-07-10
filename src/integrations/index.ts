@@ -66,11 +66,13 @@ export function launchTileDescriptor() {
 }
 
 // --- Entitlements ----------------------------------------------------------
-// TODO(integration:entitlements): check workspace/tool entitlements against the
-// platform before allowing access. Today everyone authenticated is entitled;
-// this stub returns true so local development is unblocked.
-export async function hasToolEntitlement(_userId: string, _tool = 'hashlens'): Promise<boolean> {
-  return true;
+// Fail-closed since session 4 (openi-kernel docs/hashlens-entitlements-memo.md):
+// backed by the Supabase entitlements table + has_tool() RLS enforcement
+// (migrations 0003/0004). A future platform issuer replaces the grant source,
+// not this seam.
+export async function hasToolEntitlement(userId: string, _tool = 'hashlens'): Promise<boolean> {
+  const { checkToolEntitlement } = await import('@/lib/entitlement');
+  return (await checkToolEntitlement(userId)).entitled;
 }
 
 // --- Case packet export ----------------------------------------------------
