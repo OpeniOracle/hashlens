@@ -23,10 +23,12 @@ export default {
           DEFAULT: palette.navy[700],
           subtle: palette.navy[800],
         },
+        // ADR-004: brand-interactive color is the suite ACTION blue; amber is
+        // reserved for attention states (warn/signal semantics).
         brand: {
-          DEFAULT: palette.signal.DEFAULT,
-          fg: palette.navy[950],
-          muted: palette.signal.muted,
+          DEFAULT: palette.action.DEFAULT,
+          fg: '#ffffff',
+          muted: palette.action.muted,
         },
         muted: palette.bone[500],
       },
