@@ -22,6 +22,8 @@ import {
   Select,
 } from '@/components/ui';
 import { RevealValue } from '@/components/RevealValue';
+import { CopyButton } from '@/components/CopyButton';
+import { truncateHash } from '@/lib/masking';
 import { useAuth, useStore } from '@/auth/AuthProvider';
 import { HASH_ALGORITHMS, HASH_LABELS, type HashAlgorithm } from '@/lib/hashing';
 import { matchesToCsv, buildClientSummaryHtml, downloadText } from '@/lib/export';
@@ -275,19 +277,30 @@ export function CaseResults() {
                 <thead className="text-muted">
                   <tr>
                     <th className="py-2 pr-3">Algo</th>
+                    <th className="py-2 pr-3">Matched hash</th>
                     <th className="py-2 pr-3">Candidate</th>
                     <th className="py-2 pr-3">Normalization</th>
                     <th className="py-2 pr-3">Source</th>
-                    <th className="py-2 pr-3">Conf.</th>
+                    <th className="py-2 pr-3 text-right">Conf.</th>
                     <th className="py-2 pr-3">Created</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredMatches.map((m) => {
                     const sel = m.selector_id ? selectorById.get(m.selector_id) : undefined;
+                    const weak = m.confidence < 0.85;
                     return (
                       <tr key={m.id} className="border-t border-border-subtle align-middle">
                         <td className="py-2 pr-3"><Badge tone="algo">{HASH_LABELS[m.algorithm]}</Badge></td>
+                        {/* The digest itself is the identifier analysts
+                            cross-reference against breach corpora — show it
+                            here instead of forcing a detour per row. */}
+                        <td className="py-2 pr-3">
+                          <span className="inline-flex items-center gap-1">
+                            <code className="font-mono text-bone-300" title={m.hash}>{truncateHash(m.hash)}</code>
+                            <CopyButton value={m.hash} label="Copy full hash" />
+                          </span>
+                        </td>
                         <td className="py-2 pr-3">
                           <RevealValue
                             caseId={caseId}
@@ -299,8 +312,11 @@ export function CaseResults() {
                         </td>
                         <td className="py-2 pr-3 text-bone-400">{m.normalization_label ?? '—'}</td>
                         <td className="py-2 pr-3 text-bone-400">{m.source_label ?? '—'}</td>
-                        <td className="py-2 pr-3">{(m.confidence * 100).toFixed(0)}%</td>
-                        <td className="py-2 pr-3 text-bone-500">{new Date(m.created_at).toLocaleDateString()}</td>
+                        <td className={`py-2 pr-3 text-right font-mono ${weak ? 'text-warn' : 'text-bone-300'}`}
+                            title={weak ? 'Below 85% — verify the normalization assumption' : undefined}>
+                          {(m.confidence * 100).toFixed(0)}%
+                        </td>
+                        <td className="py-2 pr-3 font-mono text-bone-500">{m.created_at.slice(0, 10)}</td>
                       </tr>
                     );
                   })}
