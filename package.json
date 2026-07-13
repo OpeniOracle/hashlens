@@ -16,7 +16,7 @@
   "dependencies": {
     "@fontsource/geist-mono": "^5.2.5",
     "@fontsource/geist-sans": "^5.2.5",
-    "@openi/kernel": "git+https://github.com/OpeniOracle/openi-kernel.git#aa5b376c343e5527d746d446552a1c18bc596134",
+    "@openi/kernel": "git+https://github.com/OpeniOracle/openi-kernel.git#db31c4c37e4719cb5178712214a6cdd7da5eaf9b",
     "@supabase/supabase-js": "^2.45.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
